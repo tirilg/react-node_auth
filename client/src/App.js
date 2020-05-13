@@ -1,26 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
+import Navbar from './components/Navbar/Navbar';
+import Goal from './components/Goal/Goal';
+import Profile from './components/Profile/Profile';
 
-function App() {
+export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  async function handleAuthentication() {
+    await fetch("http://localhost:8080/users/is-authenticated", {
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+                "Content-Type": "application/json"
+      }
+    }).then(res => {
+      console.log(res);
+      if(res.ok) {
+        setIsAuthenticated(true);
+      }
+    })
+  }
+
+  useEffect(() => {
+    handleAuthentication();
+  }, [isAuthenticated]);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header>
+          <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        </header>
+        <main>
+          {isAuthenticated ? (
+            <>
+              <Redirect to="/goals"/>
+              <Switch>
+                <Route 
+                  path="/goals" 
+                  component={Goal} 
+                />
+                {/* <Route 
+                  path="/profile" 
+                  component={Profile} 
+                /> */}
+                <Route
+                  path='/profile'
+                  render={(props) => <Profile isAuthenticated={isAuthenticated} />}
+                />
+              </Switch>
+            </>
+          ) : (
+            <>
+              <Redirect to="/login"/>
+              <Switch>
+                <Route
+                  path='/login'
+                  render={props => <Login setIsAuthenticated={setIsAuthenticated} />}
+                />
+                <Route 
+                  path="/signup" 
+                  component={Signup} 
+                />
+              </Switch>
+            </>
+          )}        
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
