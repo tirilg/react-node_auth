@@ -13,7 +13,7 @@ router.get("/users/is-authenticated", (req, res) => {
     if (!req.session.user) {
         return res.status(401).send({ response: "Not authenticated" })
     }
-    return res.send({ response: "Authenticated", data: req.session.user });
+    return res.send({ response: "Authenticated", data: req.session.user.username });
 });
 
 //get user credentials as long as they are authenticated

@@ -1,0 +1,12 @@
+.GoalList {
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    row-gap: 30px;
+    margin-top: 50px;
+}
+
+.GoalList .list {
+    display: grid;
+    row-gap: 20px;
+}

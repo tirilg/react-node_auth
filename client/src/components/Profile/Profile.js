@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import "./Profile.css";
 
 export default function Profile() {
     const [user, setUser] = useState();
@@ -25,15 +25,15 @@ export default function Profile() {
     }, []);
 
     return (
-        <>  
-        {!loading ? (
-            <p>Welcome, {user.username}</p> 
+        <div className="Profile outer-container"> 
+            {!loading ? (
+                <div className="container">
+                    <h1>Welcome, {user.username}.</h1> 
+                </div>
             ):(
-            <p>loading</p>
-            
+                <p>loading profile..</p>
+                
             )}
-            <h1>Profile</h1>
-            {/* {user.username && <p>{user.username}</p>} */}
-        </>
+        </div> 
     )
 }

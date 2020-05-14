@@ -1,0 +1,37 @@
+/* .Login {
+    display: grid;
+    justify-content: center;
+    margin-top: 50px;
+} */
+
+
+
+.Login form {
+    display: grid;
+    justify-content: center;
+    row-gap: 15px;
+}
+
+.Login input {
+    background: transparent;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    /* display: block; */
+    width: 350px;
+    border: none;
+    border-bottom: 1px solid #7430e3;
+    outline: none;
+    color: #7430e3;
+}
+
+.Login button {
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #7430e3;
+    border-radius: 35px;
+    cursor: pointer;
+    outline: none;
+}
+

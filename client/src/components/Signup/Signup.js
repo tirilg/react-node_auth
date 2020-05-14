@@ -45,36 +45,40 @@ export default function Signup() {
 
     return (
         <>
-            <h1>Sign up</h1>
-            <form>
-                <input 
-                    type="text" 
-                    name="username" 
-                    placeholder="username" 
-                    onChange={e => setUsername(e.target.value)}
-                />
-                 <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="email" 
-                    onChange={e => setEmail(e.target.value)}
-                />
-                 <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="password" 
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <input 
-                    type="password" 
-                    name="repeatPassword" 
-                    placeholder="repeat password" 
-                    onChange={e => setRepeatPassword(e.target.value)}
-                />
-                <button type="button" onClick={handleSignUp}>Sign up</button>
-            </form>
-            <div>
-                { error ? <p>{error}</p> : ""}
+            <div className="Signup outer-container">
+                <h1>Sign up</h1>
+                <div className="container">
+                    <form>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            placeholder="username" 
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="email" 
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input 
+                            type="password" 
+                            name="password" 
+                            placeholder="password" 
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <input 
+                            type="password" 
+                            name="repeatPassword" 
+                            placeholder="repeat password" 
+                            onChange={e => setRepeatPassword(e.target.value)}
+                        />
+                        <button type="button" onClick={handleSignUp}>Sign up</button>
+                    </form>
+                </div>
+                <div>
+                    { error ? <p>{error}</p> : ""}
+                </div>
             </div>
         </>
     )

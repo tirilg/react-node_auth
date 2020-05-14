@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
-import Goal from './components/Goal/Goal';
 import Profile from './components/Profile/Profile';
+import GoalList from './components/GoalList/GoalList';
+import './App.css';
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
-  async function handleAuthentication() {
-    await fetch("http://localhost:8080/users/is-authenticated", {
+  function handleAuthentication() {
+    fetch("http://localhost:8080/users/is-authenticated", {
       credentials: "include",
       headers: {
         Accept: "application/json",
@@ -43,15 +43,11 @@ export default function App() {
               <Switch>
                 <Route 
                   path="/goals" 
-                  component={Goal} 
+                  component={GoalList} 
                 />
-                {/* <Route 
-                  path="/profile" 
-                  component={Profile} 
-                /> */}
                 <Route
                   path='/profile'
-                  render={(props) => <Profile isAuthenticated={isAuthenticated} />}
+                  render={() => <Profile isAuthenticated={isAuthenticated} />}
                 />
               </Switch>
             </>
@@ -61,7 +57,7 @@ export default function App() {
               <Switch>
                 <Route
                   path='/login'
-                  render={props => <Login setIsAuthenticated={setIsAuthenticated} />}
+                  render={() => <Login setIsAuthenticated={setIsAuthenticated} />}
                 />
                 <Route 
                   path="/signup" 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import "./Login.css";
 
 export default function Login(props) { 
     const {
@@ -36,35 +37,37 @@ export default function Login(props) {
                 throw res;
             }
         })
-        /* .catch(error => {
+        .catch(error => {
             error.json().then(body => {
                 console.log(body);
                 setError(body.response);
             })
-        }) */
+        })
     }
 
     return (
         <>
-            <h1>Log in</h1>
-            <form>
-                <input 
-                    type="text" 
-                    name="username" 
-                    placeholder="username" 
-                    onChange={e => setUsername(e.target.value)}
-                />
+            <div className="Login outer-container">
+                <h1>Log in</h1>
+                <div className="container">
+                    <form>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            placeholder="username" 
+                            onChange={e => setUsername(e.target.value)}
+                        />
 
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="password" 
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <button type="button" onClick={handleLogin}>Log in</button>
-            </form>
-            <div>
-                {error ? <p>{error}</p> : ""}
+                        <input 
+                            type="password" 
+                            name="password" 
+                            placeholder="password" 
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <button type="button" onClick={handleLogin}>Log in</button>
+                    </form>
+                </div>
+                    {error ? <p>{error}</p> : ""}
             </div>
         </>
     )

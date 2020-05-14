@@ -7,7 +7,7 @@ router.get("/goals", async (req, res, next) => {
         return res.status(500).send({ response: "you need to log in" });
     }
     const { id } = req.session.user;
-    const goals = await Goal.query().select().where({ user_id: id });
+    const goals = await Goal.query().select().where({ user_id: id }).orderBy("created_at", "desc");
     return res.json(goals); 
 });
 

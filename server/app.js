@@ -13,7 +13,7 @@ const cors = require('cors');
 
 
 // Express allows POST data in JSON format
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // cors
@@ -37,23 +37,23 @@ app.use(
   cors({
     origin: ['http://localhost:8080', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true, // enable set cookie
+    credentials: true
   })
-  );
+);
   
-  app.use(
-    session({
-      secret: 'mysecret',
-      resave: false,
-      saveUninitialized: true,
-    })
-  );
+app.use(
+  session({
+    secret: 'mysecret',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
   
-  // Set up routes with our server instance 
-  const usersRoute = require("./routes/users.js");
-  const goalsRoute = require("./routes/goals.js");
-  app.use(usersRoute);
-  app.use(goalsRoute);
+// Set up routes with our server instance 
+const usersRoute = require("./routes/users.js");
+const goalsRoute = require("./routes/goals.js");
+app.use(usersRoute);
+app.use(goalsRoute);
 
 
 

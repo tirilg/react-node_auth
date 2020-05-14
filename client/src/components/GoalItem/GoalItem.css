@@ -1,0 +1,20 @@
+.GoalItem h2 {
+    color: #742fe3;
+}
+
+.GoalItem .date {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 12px;
+}
+
+.GoalItem img {
+    width: 25px;
+    height: 25px;
+}
+
+.GoalItem div {
+    display: grid;
+    justify-content: right;
+    padding-right: 8px;
+}
