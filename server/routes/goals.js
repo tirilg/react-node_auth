@@ -52,4 +52,22 @@ router.delete("/goals", async (req, res) => {
     }
 })
 
+// Update goal complete status
+router.patch("/goals", async (req, res) => {
+    if (!req.session.user) {
+        return res.status(500).send({ response: 'you need to log in' });
+    }
+    const { id, completed } = req.body;
+    
+    try {
+        const goal = await Goal.query().findById(id).patch({
+            completed: completed
+        })
+        res.json(goal);
+    } catch(error) {
+        console.log(error);
+        return res.status(500).send('something went wrong');
+    }
+})
+
 module.exports = router;

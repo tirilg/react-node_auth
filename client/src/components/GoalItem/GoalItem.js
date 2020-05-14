@@ -50,6 +50,7 @@ export default function GoalItem(props) {
             {description && <p>{description}</p>}
             <div>
                 <img onClick={() => deleteGoal(id)} src={deleteButton}></img>
+                <button>Complete</button>
             </div>
             {/* <button onClick={() => deleteGoal(id)}>Delete</button> */}
         </div>
