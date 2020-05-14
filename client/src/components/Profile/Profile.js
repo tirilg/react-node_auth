@@ -5,8 +5,8 @@ export default function Profile() {
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    async function fetchUser() {
-       await fetch("http://localhost:8080/users/profile", {
+    function fetchUser() {
+        fetch("http://localhost:8080/users/profile", {
             credentials: "include",
             headers: {
                 Accept: "application/json",
@@ -19,20 +19,11 @@ export default function Profile() {
             setLoading(false);
         }) 
     }
-
+    
     useEffect(() => {
-      /*   async function fetchUser() {
-            const response = await axios.get("http://localhost:8080/users");
-            const data = await response.data;
-            setUser(data);
-            setLoading(false);
-            
-           console.log(data)
-        } */
         fetchUser();
-        /* fetchUser(); */
     }, []);
-    console.log("user", user)
+
     return (
         <>  
         {!loading ? (
