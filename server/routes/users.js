@@ -5,7 +5,6 @@ const saltRounds = 10;
 
 const User = require("../models/User");
 
-const { isAuthenticated } = require(__dirname + "/../helpers/authentication.js");
 
 
 //check if user is authenticated with a session

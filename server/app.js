@@ -2,6 +2,9 @@
 const express = require("express");
 const app = express();
 
+// Import Express session 
+const session = require('express-session');
+
 // Import rate limiter
 const rateLimit = require('express-rate-limit');
 
@@ -22,8 +25,8 @@ app.use(
     credentials: true
   })
 );
-  
-// Initialize Express session
+
+// Initialize session
 app.use(
   session({
     secret: 'mysecret',
@@ -49,7 +52,6 @@ const { Model } = require('objection');
 
 // Give knex instance to objection
 Model.knex(knex)
-
 
 
 
