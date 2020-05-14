@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./GoalItem.css"
 import deleteButton from "../../img/delete.svg"
 
@@ -13,7 +13,8 @@ export default function GoalItem(props) {
         id,
         goal,
         created_at,
-        description
+        description,
+        completed
     } = props.goal;
 
     

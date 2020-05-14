@@ -2,13 +2,10 @@
 const express = require("express");
 const app = express();
 
-// Import Express session and Knex session store
-const session = require('express-session');
-/* const KnexSessionStore = require("connect-session-knex")(session); */
-
 // Import rate limiter
 const rateLimit = require('express-rate-limit');
 
+// Import cors
 const cors = require('cors');
 
 
@@ -16,23 +13,8 @@ const cors = require('cors');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// cors
-/* app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header(
-      "Access-Control-Allow-Methods",
-      "POST,GET,OPTIONS,PUT,DELETE, PATCH"
-    );
-    next();
-}); */
 
-
-
+// Initialize cors
 app.use(
   cors({
     origin: ['http://localhost:8080', 'http://localhost:3000'],
@@ -41,6 +23,7 @@ app.use(
   })
 );
   
+// Initialize Express session
 app.use(
   session({
     secret: 'mysecret',
@@ -64,32 +47,13 @@ const knex = Knex(knexFile.development);
 
 const { Model } = require('objection');
 
-
 // Give knex instance to objection
 Model.knex(knex)
 
 
-/* const store = new KnexSessionStore({ knex }); */
-
-// session
-/* app.use(
-  session({
-    secret: "secret",
-    name: "user_sid",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 300000
-    },
-    store: store
-  })
-); */
-
 
 
 // Limit the amount of requests on the auth routes 
-
-
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 4 // limit each IP to 4 requests per windowMS 
@@ -97,8 +61,6 @@ const authLimiter = rateLimit({
 
 /* app.use("/users/login", authLimiter); */
 /* app.use("/users/signup", authLimiter); */
-
-
 
 
 // Start the server
