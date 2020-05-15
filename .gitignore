@@ -1,3 +1,7 @@
+dbcredentials.js
+smtpcredentials.js
+
+
 # Logs
 logs
 *.log
@@ -103,11 +107,5 @@ dist
 # TernJS port file
 .tern-port
 
-config/*
 
-dbcredentials.js
-
-node_modules/
-
-smtpcredentials.js
 
