@@ -5,7 +5,17 @@ const saltRounds = 10;
 
 const User = require("../models/User");
 
+const nodemailer = require('nodemailer');
+const smtpcredentials = require('../config/smtpcredentials');
 
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user: smtpcredentials.auth.user,
+        pass: smtpcredentials.auth.pass
+    }
+});
 
 //check if user is authenticated with a session
 router.get("/users/is-authenticated", (req, res) => {
@@ -118,6 +128,37 @@ router.get("/users/logout", async (req, res, next) => {
         next(error);
     }
 });
+
+
+// Send reset password email
+router.post('/users/send-reset-password', async (req, res) => {
+    const { email } = req.body;
+
+    if(!email) {
+        return res.status(404).send({ response: "Missing fields" });
+    }
+
+    const existingUser = await User.query().select().where({'email': email }).limit(1);
+    if(!existingUser[0]) {
+        return res.status(404).send({ response: "No existing user with this email" });
+    }
+
+    const mailOptions = {
+        from: 'kea.test.tiril@gmail.com',
+        to: email,
+        subject: 'Reset password',
+        html: `<h1>Hi there</h1>`
+    }
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+            return res.send({ error: error});
+        } else {
+            return res.send({ response: 'Email sent:' + info.response});
+        }
+    })
+})
 
 
 

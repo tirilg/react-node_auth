@@ -105,4 +105,9 @@ dist
 
 config/*
 
-dbcredentials.jsnode_modules/
+dbcredentials.js
+
+node_modules/
+
+smtpcredentials.js
+
