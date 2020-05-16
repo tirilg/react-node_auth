@@ -13,38 +13,3 @@
     border-radius: 5px;
     border: 1px solid #b5b5b5;
 }
-
-
-.GoalForm input {
-    background: transparent;
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
-    /* display: block; */
-    width: 350px;
-    border: none;
-    border-bottom: 1px solid #7430e3;
-    outline: none;
-    color: #7430e3;
-}
-
-.GoalForm form {
-    display: grid;
-    justify-content: center;
-    row-gap: 15px;
-}
-
-.GoalForm button {
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px;
-    color: white;
-    background-color: #7430e3;
-    border-radius: 35px;
-    cursor: pointer;
-    outline: none;
-}
-
-/* input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-width: 50%;
-} */

@@ -4,7 +4,7 @@ const Goal = require(__dirname + "/../models/Goal.js");
 // get all goals of the signed in user
 router.get("/goals", async (req, res, next) => {
     if (!req.session.user) {
-        return res.status(500).send({ response: "you need to log in" });
+        return res.status(401).send({ response: "you need to log in" });
     }
     const { id } = req.session.user;
     const goals = await Goal.query().select().where({ user_id: id }).orderBy("created_at", "desc");
@@ -14,10 +14,14 @@ router.get("/goals", async (req, res, next) => {
 // create a new goal
 router.post("/goals", async (req, res) => {
     if (!req.session.user) {
-        return res.status(500).send({ response: 'you need to log in' });
+        return res.status(401).send({ response: 'you need to log in' });
     }
 
     const { goal, description } = req.body;
+
+    if (!goal) {
+        return res.status(404).send({ response: "Missing goal title" });
+    }
     
     try {
         const userId = req.session.user.id;

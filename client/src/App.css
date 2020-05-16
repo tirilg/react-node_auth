@@ -44,8 +44,28 @@ button {
   align-items: center;
 }
 
+.outer-container h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
 .outer-container {
   display: grid;
   justify-content: center;
   margin-top: 50px;
+}
+
+.error {
+  color: white;
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
+.input-error {
+  border-bottom: 1px solid red;
+}
+
+.yes {
+  color: red;
 }

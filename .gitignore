@@ -1,5 +1,5 @@
-dbcredentials.js
-smtpcredentials.js
+db_credentials.js
+smtp_credentials.js
 
 
 # Logs

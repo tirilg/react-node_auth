@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 export default function Signup() { 
-    // Hooks state
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [repeatPassword, setRepeatPassword] = useState();
     const [error, setError] = useState("");
 
-    // History
     const history = useHistory();
 
     function handleSignUp() {
@@ -30,7 +28,7 @@ export default function Signup() {
         .then(res => {
             console.log(res);
             if (res.ok) {
-                history.push('/login');
+                history.push('/');
             } else {
                 throw res;
             }
@@ -49,25 +47,25 @@ export default function Signup() {
                 <h1>Sign up</h1>
                 <div className="container">
                     <form>
-                        <input 
+                        <input className={error.includes("missing") || error.includes("username") ? "input-error" : ""}
                             type="text" 
                             name="username" 
                             placeholder="username" 
                             onChange={e => setUsername(e.target.value)}
                         />
-                        <input 
+                        <input className={error.includes("missing") || error.includes("email") ? "input-error" : ""}
                             type="email" 
                             name="email" 
                             placeholder="email" 
                             onChange={e => setEmail(e.target.value)}
                         />
-                        <input 
+                        <input className={error.includes("missing") || error.includes("password") ? "input-error" : ""}
                             type="password" 
                             name="password" 
                             placeholder="password" 
                             onChange={e => setPassword(e.target.value)}
                         />
-                        <input 
+                        <input className={error.includes("missing") || error.includes("password") ? "input-error" : ""}
                             type="password" 
                             name="repeatPassword" 
                             placeholder="repeat password" 
@@ -77,7 +75,7 @@ export default function Signup() {
                     </form>
                 </div>
                 <div>
-                    { error ? <p>{error}</p> : ""}
+                    { error ? <p className="error">{error}</p> : ""}
                 </div>
             </div>
         </>

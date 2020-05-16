@@ -51,14 +51,14 @@ export default function Login(props) {
                 <h1>Log in</h1>
                 <div className="container">
                     <form>
-                        <input 
+                        <input className={error.includes("missing") || error.includes("username") ? "input-error" : ""}
                             type="text" 
                             name="username" 
                             placeholder="username" 
                             onChange={e => setUsername(e.target.value)}
                         />
 
-                        <input 
+                        <input className={error.includes("missing") || error.includes("password") ? "input-error" : ""}
                             type="password" 
                             name="password" 
                             placeholder="password" 
@@ -66,8 +66,11 @@ export default function Login(props) {
                         />
                         <button type="button" onClick={handleLogin}>Log in</button>
                     </form>
+                    <div className="forgot">
+                        Forgot your password? Reset it <a href="/send-reset-password">here</a>
+                    </div>
                 </div>
-                    {error ? <p>{error}</p> : ""}
+                    {error ? <p className="error">{error}</p> : ""}
             </div>
         </>
     )

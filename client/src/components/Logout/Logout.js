@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function Logout(props) {
     
     const {
         setIsAuthenticated
     } = props; 
+
+    const history = useHistory();
 
     function handleLogOut() {
         fetch('http://localhost:8080/users/logout', {
@@ -19,6 +22,7 @@ export default function Logout(props) {
             console.log(res);
             if(res.ok) {
                 setIsAuthenticated(false);
+                history.push("/");
             }
         })
         .catch(error => {

@@ -18,12 +18,12 @@ export default function Navbar(props) {
                         {isAuthenticated ? (
                             <>
                                 <li>
-                                    <NavLink exact to="/goals" activeClassName="selected">
+                                    <NavLink to="/goals" activeClassName="selected">
                                         Goals
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink exact to="/profile" activeClassName="selected">
+                                    <NavLink to="/profile" activeClassName="selected">
                                         Profile
                                     </NavLink>
                                 </li>
@@ -32,7 +32,7 @@ export default function Navbar(props) {
                         ): (
                             <>
                                 <li>
-                                    <NavLink to="/login" activeClassName="selected">
+                                    <NavLink exact to="/" activeClassName="selected">
                                         Log in
                                     </NavLink>
                                 </li>
