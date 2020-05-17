@@ -1,3 +1,7 @@
+.GoalItem.container {
+    width: 500px;
+}
+
 .GoalItem h2 {
     color: #742fe3;
 }
@@ -9,12 +13,74 @@
 }
 
 .GoalItem img {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
+    justify-self: right;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
-.GoalItem div {
+
+.GoalItem .buttons {
+   /*  display: grid;
+    justify-content: right;
+    grid-template-columns: 1fr .6fr;
+    align-items: center;
+    margin-top: 20px; */
+
     display: grid;
     justify-content: right;
-    padding-right: 8px;
+    grid-template-columns: .3fr .1fr;
+    align-items: center;
+    margin-top: 20px;
 }
+
+.complete {
+    color: #7430e3;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: white;
+    border: 2px solid #7430e3;
+    padding: 8px;
+}
+
+
+.complete:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #7430e3;
+    transition: all .3s;
+    z-index: -1;
+}
+
+.complete:hover {
+    color: white;
+}
+
+.complete:hover:before {
+    width: 100%
+}
+
+.completed {
+    color: white;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: #7430e3;
+    border: 2px solid #7430e3;
+    padding: 8px;
+}
+
+.goal {
+    padding-left: 10px;
+    padding-top: 10px;
+    word-break: break-all;
+}
+

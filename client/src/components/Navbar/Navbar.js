@@ -12,7 +12,7 @@ export default function Navbar(props) {
 
     return (
         <>
-            <div className="Navbar">
+            <div className={isAuthenticated ? "Navbar auth" : "Navbar"}>
                 <nav>
                     <ul>
                         {isAuthenticated ? (

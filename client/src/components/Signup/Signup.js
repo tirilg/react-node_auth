@@ -26,7 +26,6 @@ export default function Signup() {
             })
         })
         .then(res => {
-            console.log(res);
             if (res.ok) {
                 history.push('/');
             } else {
@@ -35,7 +34,6 @@ export default function Signup() {
         })
         .catch(error => {
             error.json().then(body => {
-                console.log(body);
                 setError(body.response);
             })
         })

@@ -19,7 +19,6 @@ export default function Logout(props) {
             credentials: "include"
         })
         .then(res => {
-            console.log(res);
             if(res.ok) {
                 setIsAuthenticated(false);
                 history.push("/");

@@ -28,7 +28,6 @@ export default function SendResetEmail() {
         })
         .catch(error => {
             error.json().then(body => {
-                console.log(body);
                 setError(body.response);
             })
         })

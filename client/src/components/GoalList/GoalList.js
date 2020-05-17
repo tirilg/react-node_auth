@@ -10,7 +10,6 @@ export default function GoalList() {
 
     const history = useHistory();
 
-    
     useEffect(() => {
         let isFetching = true
 
@@ -37,7 +36,7 @@ export default function GoalList() {
             }
         }) 
         return () => isFetching = false;
-    }, []);
+    }, [history]);
 
     return (
         <>

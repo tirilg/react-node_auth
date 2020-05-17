@@ -9,7 +9,6 @@ const saltRounds = 10;
 // Nodemailer setup
 const nodemailer = require('nodemailer');
 const smtpcredentials = require('../config/smtp_credentials');
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth:{
@@ -18,36 +17,24 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-//check if user is authenticated with a session
+// Check if user is authenticated with a session
 router.get("/users/is-authenticated", (req, res) => {
     if (!req.session.user) {
-        return res.status(401).send({ response: "Not authenticated" })
+        return res.status(401).send({ response: "not authenticated" })
     }
-    return res.send({ response: "Authenticated", data: req.session.user.username });
+    return res.send({ response: "authenticated", data: req.session.user.username });
 });
 
-//get user credentials as long as they are authenticated
-router.get("/users", async (req, res, next) => {
-    if(req.session.user) {
-        const user = await User.query()
-            .select("username", "email")
-            .findById(req.session.user.id)
-            .throwIfNotFound();
-        res.json(user);
-    }
-    return res.status(401).send({response: "you need to log in"})
-});
-
-//get user profile
+// Get user profile
 router.get('/users/profile', async (req, res) => {
-    console.log(req.session.user)
     if(!req.session.user) {
         return res.status(401).send({ response: "You need to log in" });
     }
+    req.session.user.password = '';
     return res.send(req.session.user);
 });
 
-// User - login
+// Login
 router.post("/users/login", async (req, res) => {
     const { username, password } = req.body;
 
@@ -75,8 +62,7 @@ router.post("/users/login", async (req, res) => {
 });
 
 
-// User - signup
-
+// Sign up
 router.post("/users/signup", async (req, res, next) => {
     const { username, email, password, repeatPassword } = req.body;
 
@@ -102,8 +88,6 @@ router.post("/users/signup", async (req, res, next) => {
             }
     }
     
-
-    // try creating the user
     bcrypt.hash(password, saltRounds, async (error, hashedPassword) => {
         if(error) {
            return res.status(500).send({ response: "error creating user" });
@@ -124,17 +108,14 @@ router.get("/users/logout", async (req, res, next) => {
     if(!req.session.user) {
         return res.status(401).send({response: "you need to log in"})
     }
-    try {
-        req.session.destroy(error => {
-            if(error) {
-                return res.status(500).send({ response: "Unable to log out" });
-            } else {
-                return res.status(200).send({ response: "Successfully logged out" });
-            }
-        })
-    } catch (error) {
-        next(error);
-    }
+
+    req.session.destroy(error => {
+        if(error) {
+            return res.status(500).send({ response: "unable to log out" });
+        } else {
+            return res.status(200).send({ response: "successfully logged out" });
+        }
+    })
 });
 
 

@@ -22,6 +22,14 @@ router.post("/goals", async (req, res) => {
     if (!goal) {
         return res.status(404).send({ response: "Missing goal title" });
     }
+
+    if (goal && goal.length > 100) {
+        return res.status(404).send({ response: "Goal title is too long" });
+    }
+
+    if (description && description.length > 200) {
+        return res.status(404).send({ response: "Description is too long" });
+    }
     
     try {
         const userId = req.session.user.id;
@@ -33,7 +41,6 @@ router.post("/goals", async (req, res) => {
 
         return res.json(newGoal);
     } catch (error) {
-        console.log(error);
         return res.status(500).send('something went wrong');
     }
 
@@ -51,7 +58,6 @@ router.delete("/goals", async (req, res) => {
         const goal = await Goal.query().deleteById(id);
         return res.json(goal);
     } catch (error) {
-        console.log(error);
         return res.status(500).send('something went wrong');
     }
 })
@@ -69,7 +75,6 @@ router.patch("/goals", async (req, res) => {
         })
         res.json(goal);
     } catch(error) {
-        console.log(error);
         return res.status(500).send('something went wrong');
     }
 })

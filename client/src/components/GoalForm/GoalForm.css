@@ -1,5 +1,6 @@
-.GoalForm {
+.GoalForm.container {
     height: 240px;
+    width: 500px;
 }
 
 .GoalForm textarea {
@@ -12,4 +13,8 @@
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #b5b5b5;
+}
+
+.GoalForm p {
+    text-align: center;
 }

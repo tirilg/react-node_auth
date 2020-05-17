@@ -24,7 +24,6 @@ export default function ResetPassword(props) {
             })
         })
         .then(res => {
-            console.log(res);
             if (res.ok) {
                 setSuccessMessage("Successfully updated password");
                 setTimeout(()=> {
@@ -36,7 +35,6 @@ export default function ResetPassword(props) {
         })
         .catch(error => {
             error.json().then(body => {
-                console.log(body);
                 setError(body.response);
             })
         })

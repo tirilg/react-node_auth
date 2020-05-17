@@ -37,7 +37,6 @@ export default function GoalItem(props) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             const index = goals.findIndex(x => x.id === id);
             const newGoals = [...goals];
             newGoals.splice(index, 1);
@@ -49,13 +48,11 @@ export default function GoalItem(props) {
     }
 
     function updateGoalStatus(id) {
-        console.log(id);
         const index = goals.findIndex(x => x.id === id);
         const newGoals = [...goals];
-        newGoals[index].completed = newGoals[index].completed ? false : true;
+        newGoals[index].completed = newGoals[index].completed == 1 ? 0 : 1;
         setGoals(newGoals);
 
-        console.log(completed)
         fetch('http://localhost:8080/goals', {
             credentials: 'include',
             method: "PATCH",
@@ -69,9 +66,6 @@ export default function GoalItem(props) {
             })
         })
         .then(res => res.json())
-        .then(data => {
-            /* console.log(data) */
-        })
         .catch(error => {
             setError(error);
         })
@@ -79,17 +73,18 @@ export default function GoalItem(props) {
 
     return (
         <div id={id} key={id} className="GoalItem container">
-            <h2>{goal}</h2>
-            {created_at && <p className="date">{formattedDate}</p>}
-            {description && <p>{description}</p>}
+            <div className="goal">
+                <h2>{goal}</h2>
+                {created_at && <p className="date">{formattedDate}</p>}
+                {description && <p>{description}</p>}
+            </div>
             <div>
-                <div> 
-                    {completed === 'true' ? <button type="button" onClick={() => updateGoalStatus(id)}>Completed</button> : <button type="button" onClick={() => updateGoalStatus(id)}>Complete</button>}
-                    <img onClick={() => deleteGoal(id)} src={deleteButton}></img>
-                </div>
-                <div>  
+                <div className="buttons"> 
+                    <button className={parseInt(completed) ? "completed" : "complete"} type="button" onClick={() => updateGoalStatus(id)}>{parseInt(completed) ? "Completed" : "Complete"}</button>
+                    <img onClick={() => deleteGoal(id)} src={deleteButton} alt="delete button"></img>
                 </div>
             </div>
+            {error ? <p>{error}</p> : ""}
         </div>
     )
 }

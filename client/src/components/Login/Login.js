@@ -29,7 +29,6 @@ export default function Login(props) {
             })
         })
         .then (res => {
-            console.log(res);
             if (res.ok) {
                 setIsAuthenticated(true);
                 history.push("/goals");
@@ -39,7 +38,6 @@ export default function Login(props) {
         })
         .catch(error => {
             error.json().then(body => {
-                console.log(body);
                 setError(body.response);
             })
         })

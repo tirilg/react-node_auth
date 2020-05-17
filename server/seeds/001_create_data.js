@@ -9,17 +9,17 @@ exports.seed = function(knex) {
         {
           username: 'alexmoore',
           email: 'alex@moore.com',
-          password: '$2b$10$LewTPk8vd0N8VKOyKMQfae6/arsUOubvgfrfYlqIYaqB6nGJrOGhG' // -> password
+          password: '$2b$10$LewTPk8vd0N8VKOyKMQfae6/arsUOubvgfrfYlqIYaqB6nGJrOGhG' // -> password is 'password'
         },
         {
           username: 'mikescott',
           email: 'mikescott@dundermifflin.com',
-          password: '$2b$10$LewTPk8vd0N8VKOyKMQfae6/arsUOubvgfrfYlqIYaqB6nGJrOGhG' // -> password
+          password: '$2b$10$LewTPk8vd0N8VKOyKMQfae6/arsUOubvgfrfYlqIYaqB6nGJrOGhG' // -> password is 'password'
         },
         {
           username: 'pam',
           email: 'pam@test.com',
-          password: '$2b$10$LewTPk8vd0N8VKOyKMQfae6/arsUOubvgfrfYlqIYaqB6nGJrOGhG' // -> password
+          password: '$2b$10$LewTPk8vd0N8VKOyKMQfae6/arsUOubvgfrfYlqIYaqB6nGJrOGhG' // -> password is 'password'
         }
       ]);
     })

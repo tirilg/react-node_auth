@@ -38,6 +38,7 @@ button {
   border-radius: 20px;
   box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.2);
   padding: 10px;
+  max-width: 500px;
   width: 400px;
   /* height: 240px; */
   display: grid;
@@ -64,8 +65,4 @@ button {
 
 .input-error {
   border-bottom: 1px solid red;
-}
-
-.yes {
-  color: red;
 }

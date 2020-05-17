@@ -8,32 +8,6 @@ export default function Profile() {
 
     const history = useHistory();
 
-   /*  function fetchUser() {
-        fetch("http://localhost:8080/users/profile", {
-            credentials: "include",
-            headers: {
-                Accept: "application/json",
-                        "Content-Type": "application/json"
-            }
-        })
-        .then(res => {
-            if(res.status === 401) {
-                return history.push("/");
-            } else {
-                return res.json();
-            }
-        })
-        .then(data => {
-            setUser(data);
-            setLoading(false);
-        }) 
-    }
-    
-    useEffect(() => {
-        fetchUser();
-    }, []);
-     */
-
     useEffect(() => {
         let isFetching = true
 
@@ -55,21 +29,26 @@ export default function Profile() {
         })
         .then(data => {
             if(isFetching) {
+                const date = new Date(data.created_at);
+                const formattedDate = date.toLocaleDateString("en-us", {day: 'numeric', month: 'long', year: "numeric"});
+                data.created_at = formattedDate;
                 setUser(data);
                 setLoading(false);
             }
         }) 
         return () => isFetching = false;
-    },[]) 
+    },[history]) 
+
+
     return (
         <div className="Profile outer-container"> 
             {!loading ? (
                 <div className="container">
-                    <h1>Welcome, {user.username}.</h1> 
+                    <h1>Welcome, {user.username}.</h1>
+                    <p>You have been a member since {user.created_at}</p>
                 </div>
             ):(
-                <p>loading profile..</p>
-                
+                <p>loading profile..</p>   
             )}
         </div> 
     )
