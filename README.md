@@ -16,7 +16,7 @@ Follow these steps to run the server:
 
 To make nodemailer work: 
 
-1. Navigate to the /server/config/ folder and create a file "smtp_credentials.js" by copying the template and replacing the auth information with your own. Make sure you have the security setting "Allow less secure apps" turned on in your gmail settings. 
+1. Navigate to the /server/config/ folder and create a file "smtp_credentials.js" by copying the template and replacing the auth information with your own. Make sure you have the security setting "Allow less secure apps" turned on in your gmail settings. Could be a good idea to use an email for test purposes in this scenario. 
 
 Follow these steps to run the React project:
 1. In your IDE, navigate to client/ and run "npm install" followed by "npm run start" to run the project. 
