@@ -14,6 +14,9 @@ Follow these steps to run the server:
 5. After all the packages are installed, while still in the server folder, run the following commands in this order: "npm run migrate:rollback", "npm run migrate:latest" and "npm run seed:run"
 6. When all the migrations and seeds completed, you can start the server by running "nodemon app.js" and in the terminal the message server is listening on port 8080 should appear.
 
+To make nodemailer work: 
+
+1. Navigate to the /server/config/ folder and create a file "smtp_credentials.js" by copying the template and replacing the auth information with your own. Make sure you have the security setting "Allow less secure apps" turned on in your gmail settings. 
 
 Follow these steps to run the React project:
 1. In your IDE, navigate to client/ and run "npm install" followed by "npm run start" to run the project. 
